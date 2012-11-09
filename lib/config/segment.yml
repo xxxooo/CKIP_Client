@@ -1,0 +1,4 @@
+host: 140.109.19.104
+port: 1501
+username: iis				#請先至中研院中文斷詞系統網站申請帳號與密碼
+password: iis				#網址 http://ckipsvr.iis.sinica.edu.tw

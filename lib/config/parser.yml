@@ -1,0 +1,4 @@
+host: 140.109.19.112
+port: 8000
+username: iis				#請先至中研院中文剖析系統網站申請帳號與密碼
+password: iis				#網址 http://parser.iis.sinica.edu.tw/v1/apply.htm
