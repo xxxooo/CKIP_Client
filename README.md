@@ -11,7 +11,7 @@ CKIP_CLient是連接[中央研究院][中央研究院][詞庫小組][詞庫小�
 請先至中文斷詞系統[網站][斷詞申請]或中文剖析系統[網站][剖析申請]申請：帳號/密碼  
 再安裝本Gem！
 
-	gem install chinese_convt
+	gem install ckip_client
 
 安裝完成後至Gem所在資料夾中修改帳號密碼資料。  
 資料夾位置通常在：/usr/local/lib/ruby/gems/1.9.1/gems/  
