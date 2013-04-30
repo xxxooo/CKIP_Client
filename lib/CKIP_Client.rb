@@ -20,12 +20,18 @@ module CKIP
 <authentication username=\"#{config['username']}\" password=\"#{config['password']}\" />
 <text>#{text}</text>
 </wordsegmentation>"
-    
-      socket = TCPSocket.open( config['host'] , config['port'] )
-      socket.write( request )
-      xml_result = socket.gets.force_encoding( text_encoding )
-      socket.close
-      return xml_result
+      begin
+        Timeout::timeout(5) {
+          socket = TCPSocket.open( config['host'] , config['port'] )
+          socket.write( request )
+          xml_result = socket.gets.force_encoding( text_encoding )
+          socket.close
+          return xml_result
+        }
+      rescue Timeout::Error
+        puts "CKIP Connection Timeout!!!"
+        raise Timeout::Error
+      end
     end
     
     def self.xml2str( xml )
