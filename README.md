@@ -36,9 +36,9 @@ CKIP_Client是連接[中央研究院][中央研究院][詞庫小組][詞庫小�
 	CKIP.segment( text , 'neat' )
 	CKIP.parser( text , 'neat' )
 
-文字編碼：
+文字編碼：  
 輸入的字串編碼可以是 UTF-8 或 Big5 或是 Big5-UAO 三種其中之一。  
-而輸出結果一律為 UTF-8 編碼。
+而輸出結果一律為 UTF-8 編碼。  
 CKIP系統不支援 Big5-HKSCS 之特有港字。
 
 

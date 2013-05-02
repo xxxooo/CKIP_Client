@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require 'socket'
+require 'timeout'
 require 'yaml'
 
 module CKIP
