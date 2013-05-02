@@ -1,4 +1,4 @@
-#CKIP_CLient
+#CKIP_Client
 
 [RubyGems](http://rubygems.org/gems/ckip_client)
 
@@ -15,7 +15,7 @@ CKIP_Client是連接[中央研究院][中央研究院][詞庫小組][詞庫小�
 
 安裝完成後至Gem所在資料夾中修改帳號密碼資料。  
 資料夾位置通常在：/usr/local/lib/ruby/gems/1.9.1/gems/  
-進入：ckip_client-0.0.3/lib/config/  
+進入：ckip_client-0.0.5/lib/config/  
 於 segment.yml 檔案中輸入中文斷詞系統之帳號密碼，  
 於 parser.yml 檔案中輸入中文剖析系統之帳號密碼，  
 至此安裝設定就緒。
@@ -36,9 +36,10 @@ CKIP_Client是連接[中央研究院][中央研究院][詞庫小組][詞庫小�
 	CKIP.segment( text , 'neat' )
 	CKIP.parser( text , 'neat' )
 
-注：  
-輸入的字串編碼可以是 UTF-8 或是 Big5 或 Big5-UAO 三種其中之一。  
-但是輸出結果一律為 UTF-8 編碼。
+文字編碼：
+輸入的字串編碼可以是 UTF-8 或 Big5 或是 Big5-UAO 三種其中之一。  
+而輸出結果一律為 UTF-8 編碼。
+CKIP系統不支援 Big5-HKSCS 之特有港字。
 
 
 ## 範例 Example
