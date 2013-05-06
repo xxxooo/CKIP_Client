@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'ckip_client'
-  s.version     = '0.0.6'
-  s.date        = '2013-05-02'
+  s.version     = '0.0.7'
+  s.date        = '2013-05-06'
   s.summary     = "連接中研院詞庫小組的中文斷詞系統與中文剖析系統之API"
   s.description = "CKIP_CLient是連接中央研究院詞庫小組研發之中文斷詞系統與中文剖析系統的Ruby程式界面。感謝中央研究院詞庫小組多年來之研究成果！"
   s.authors     = ["xxxooo"]
