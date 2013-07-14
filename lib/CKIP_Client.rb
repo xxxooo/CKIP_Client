@@ -9,13 +9,17 @@ module CKIP
     
     def self.get( sys , text )
       text_encoding = text.encoding.to_s
-      unless ['Big5','Big5-UAO','UTF-8'].include? text_encoding
+      if text_encoding == "ASCII-8BIT"
+        text.encode!("UTF-8")
+        text_encoding = text.encoding.to_s
+      end
+      unless %w{Big5 Big5-UAO UTF-8}.include? text_encoding
         raise 'Encoding ERROR!! CKIP_Client only support UTF-8 or Big5 or Big5-UAO encodings.'
       end
       input_encoding = (text_encoding == 'Big5-UAO')? 'Big5' : text_encoding
       sst = 2.0 - 2304.0 / (text.size + 1280)
       config = YAML::load( File.open( File.dirname(__FILE__) + "/config/#{sys}.yml" ).read )
-      sleep rand * 0.25 + 0.1
+      sleep rand * 0.2 + 0.1
       request = "<?xml version=\"1.0\" ?>
 <wordsegmentation version=\"0.1\" charsetcode=\"#{input_encoding.downcase}\">
 <option showcategory=\"1\" />
@@ -25,12 +29,12 @@ module CKIP
       begin
         time0 = Time.now
         xml_result = Timeout::timeout(8.0 * (sst + 1.0)){
-          @socket = TCPSocket.open( config['host'] , config['port'] )
+          @socket = TCPSocket.new( config['host'] , config['port'] )
           @socket.write( request )
           @socket.gets.force_encoding( text_encoding )
         }
         time1 = (Time.now - time0)
-        sleep (rand + 0.5) * sst + time1 * 0.35
+        sleep (rand + 0.5) * sst + time1 * 0.25
         
         if xml_result.valid_encoding?
           return xml_result.encode!('UTF-8')
@@ -45,14 +49,12 @@ module CKIP
         time1 = (Time.now - time0)
         puts "!!!Timeout: waited for #{time1.round(2)}s and no response from CKIP server!!!"
         raise $!
-      ensure
-        @socket.close
       end
     end
     
     def self.xml2str( xml )
       if /<result>(.*?)<\/result>/m.match( xml )
-        return $1.gsub(/<\/sentence>\r?\n?\t*?\s*?<sentence>/,"\n").gsub("\n　\n","\n\n").sub(/\t*?\s*?<sentence>　?/,'').sub(/<\/sentence>/,'').gsub("\n　", "\n")
+        return $1.gsub(/<\/sentence>\r?\n?\t*?\s*?<sentence>/,"\n").gsub("\n　\n","\n\n").sub(/\t*?\s*?<sentence>/,'').sub(/<\/sentence>/,'')
       elsif /<processstatus code="\d">(.*?)<\/processstatus>/.match( xml )
         raise $1
       else
