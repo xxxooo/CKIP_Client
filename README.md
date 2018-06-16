@@ -43,7 +43,7 @@ CKIP_Client是連接[中央研究院][中央研究院][詞庫小組][詞庫小�
 
 ## 範例 Example
 
-	require 'ckip_client'
+	require 'CKIP_Client'
 	text = File.open('text.txt').read
 	puts CKIP.segment( text )
 
